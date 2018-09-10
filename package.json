@@ -5,7 +5,6 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/server.js",
-    "start:dev": "ts-node src/index.ts",
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development"
   },
