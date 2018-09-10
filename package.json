@@ -1,12 +1,14 @@
 {
   "name": "gitclub",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/server.js",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "nodemon --delay 1",
     "build": "webpack --mode production",
-    "build:dev": "webpack --mode development"
+    "build:dev": "webpack --mode development",
+    "dev:watch": "npm run build:dev -- -w -d --progress",
+    "watch": "concurrently \"npm:dev:watch\" \"npm:start\""
   },
   "dependencies": {
     "apollo-server": "^2.0.7",
@@ -16,12 +18,14 @@
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.3",
-    "@types/request-promise-native": "^1.0.15",
     "@types/graphql": "^14.0.0",
     "@types/node": "^10.9.4",
+    "@types/request-promise-native": "^1.0.15",
     "@types/ws": "^6.0.1",
+    "concurrently": "^4.0.1",
     "graphql-import": "^0.7.0",
     "graphql-tag": "^2.9.2",
+    "nodemon": "^1.18.4",
     "request": "^2.88.0",
     "ts-lint": "^4.5.1",
     "ts-loader": "^5.1.0",

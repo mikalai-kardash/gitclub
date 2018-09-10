@@ -5,7 +5,6 @@ import { kind, definitions } from './schema/github.graphql'
 
 environment.config()
 
-//const typeDefs = gql(importSchema('src/schema/github.graphql'))
 const server = new ApolloServer({
     typeDefs: { kind, definitions },
     resolvers: {

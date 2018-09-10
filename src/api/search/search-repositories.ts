@@ -16,8 +16,6 @@ interface SearchRepositoriesRequest {
 }
 
 const searchRepositories = async () => {
-    // process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
     const response = await request({
         uri: `${HOST}${api}`,
         qs: {
