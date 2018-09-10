@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "outDir": "./dist",
+    // "strict": true,
+    // "noImplicitAny": true,
+    // "noUnusedLocals": false,
+    // "noUnusedParameters": true,
+    "skipLibCheck": true,
+    // "types": [
+    //   "./src/globals.d.ts"
+    // ]
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

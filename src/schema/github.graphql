@@ -1,0 +1,8 @@
+type Query {
+    search_repositories: [Repository!]! 
+}
+
+type Repository {
+    id: ID!
+    name: String!
+}
