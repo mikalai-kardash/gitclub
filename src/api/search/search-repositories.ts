@@ -1,25 +1,23 @@
 import * as request from 'request-promise-native'
 import { getAuthorizationHeader } from '../utils'
-import { Repository } from '../models'
 import { HOST, USER_AGENT } from '../constants'
+import { SearchRepositoriesRequest, SearchRepositoriesResponse } from './models'
 
 const api = '/search/repositories';
 
-interface SearchRepositoriesResponse {
-    total_count: number;
-    incomplete_results: boolean;
-    items: Array<Repository>;
-}
+const searchRepositories = async (criteria: SearchRepositoriesRequest) => {
 
-interface SearchRepositoriesRequest {
+    const { query } = criteria;
 
-}
+    let searchQuery = criteria.query.query;
+    if (query.language) {
+        searchQuery += ` language:${query.language}`
+    }
 
-const searchRepositories = async () => {
     const response = await request({
         uri: `${HOST}${api}`,
         qs: {
-            q: 'tetris',
+            q: searchQuery,
             sort: 'stars'
         },
         headers: {
@@ -36,5 +34,6 @@ const searchRepositories = async () => {
 
 export {
     searchRepositories,
+    SearchRepositoriesRequest,
     SearchRepositoriesResponse,
 }

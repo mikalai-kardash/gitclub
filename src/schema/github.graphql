@@ -1,8 +1,70 @@
-type Query {
-    search_repositories: [Repository!]! 
+scalar Date
+
+enum License {
+    ZLIB
+    UNLICENSE
+    NCSA
+    OFL1_1
+    POSTGRESQL
+    OSL3_0
+    MPL2_0
+    MIT
+    MSPL
+    LPPL1_3C
+    LGPL2_1
+    LGPL
+    GPL3_0
+    GPL2_0
+    GPL
+    AGPL3_0
+    EUPL1_1
+    EPL1_0
+    ECL2_0
+    WTFPL
+    CC_BY_SA_4_0
+    CC0_1_0
+    CC
+    BSD_3_CLAUSE_CLEAR
+    BSD_3_CLAUSE
+    BSD_2_CLAUSE
+    BSD1_1_0
+    ARTISTIC2_0
+    AFL3_0
+}
+
+input SearchRepositoriesQueryInput {
+    query: String!
+    created: Date
+    pushed: Date
+    fork: Boolean
+    forks: Int
+    language: String
+    license: License
+    repo: String
+    user: String
+    size: Int
+    stars: Int
+    archived: Boolean
+}
+
+input SearchRepositoriesInput {
+    query: SearchRepositoriesQueryInput!
+    sort: String
+    order: String
 }
 
 type Repository {
     id: ID!
     name: String!
+    owner: User!
+    collaborators: [User!]!
+}
+
+type User {
+    id: ID!
+    login: String!
+}
+
+type Query {
+    repositories(search: SearchRepositoriesInput!): [Repository!]! 
 }

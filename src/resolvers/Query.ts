@@ -1,13 +1,29 @@
 import { searchRepositories } from '../api/search/search-repositories'
 
-const search_repositories = async (_root: any, _args: any, _context: any, _info: any) => {
-    const repositories = await searchRepositories()
+const resolveRepositories = async (_root: any, args: any, _context: any, _info: any) => {
+    const {
+        search: {
+            query: { query, language }
+        }
+    } = args;
+
+    const repositories = await searchRepositories({
+        query: {
+            query,
+            language,
+        }
+    })
+
     return repositories.items.map(r => ({
-        id: r.node_id,
-        name: r.full_name
+        id: r.id,
+        name: r.name,
+        owner: {
+            id: r.owner.id,
+            login: r.owner.login
+        }
     }));
 }
 
 export default {
-    search_repositories,
+    repositories: resolveRepositories,
 }
